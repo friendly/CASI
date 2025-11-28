@@ -277,6 +277,9 @@ ncog <- read.table("http://hastie.su.domains/CASI_files/DATA/ncog.txt",
                    header=TRUE)
 str(ncog)
 
+save(ncog, file = here::here("data", "ncog.RData"))
+
+
 #' ## Nodes data of Figure 6.3 (`nodes`)
 
 #' Lymph nodes removed from 844 cancer patients.
@@ -288,6 +291,8 @@ str(ncog)
 nodes <- read.table("http://hastie.su.domains/CASI_files/DATA/nodes.txt",
                     header=TRUE)
 str(nodes)
+
+save(nodes, file = here::here("data", "nodes.RData"))
 
 #' ## Pediatric cancer data of Section 9.4 and Table 9.6 (`pediatric`)
 
@@ -305,6 +310,9 @@ pediatric <- read.table("http://hastie.su.domains/CASI_files/DATA/pediatric.txt"
                         header=TRUE)
 str(pediatric)
 
+save(pediatric, file = here::here("data", "pediatric.RData"))
+
+
 #' ## Police data of Figure 15.7 (`police`)
 
 #' Z scores for 2749 New York City police officers.
@@ -314,6 +322,16 @@ str(pediatric)
 police <- read.table("http://hastie.su.domains/CASI_files/DATA/police.txt",
                      header=TRUE)
 str(police)
+
+#' Rename to 'z'
+police <- police |>
+  rename(z = X2.411)
+str(police)
+
+save(police, file = here::here("data", "police.RData"))
+
+
+
 
 #' ## Prostate data of Section 3.3 and later (`prostmat`, `prostz`)
 
@@ -325,11 +343,19 @@ str(police)
 prostmat <- read.csv("http://hastie.su.domains/CASI_files/DATA/prostmat.csv")
 names(prostmat)
 
-#' `prostz` is the vector of 6033 z-values pictured in Figure 3.4. These were obtained as decribed on page 272.
+#' NOT saved. Should make variable names control.1 -> control.01, etc
+
+#' `prostz` is the vector of 6033 z-values pictured in Figure 3.4. These were obtained as describe on page 272.
 #'
 prostz <- read.table("http://hastie.su.domains/CASI_files/DATA/prostz.txt",
                      header=TRUE)
 str(prostz)
+
+prostz <- prostz |>
+  rename(z = X1.47236666651029)
+str(prostz)
+
+save(prostz, file = here::here("data", "prostz.RData"))
 
 #' ## Protein classification Section 19.6 (`protein_kernel`, `protein_label`)
 
@@ -346,6 +372,10 @@ protein_kernel <- matrix(scan("http://hastie.su.domains/CASI_files/DATA/protein_
                               what=0),
                          1708, 1708)
 dim(protein_kernel)
+str(protein_kernel)
+
+save(protein_kernel, file = here::here("data", "protein_kernel.RData"))
+
 
 #' The response label takes values [-1, +1], there being 45 pluses (particular protein class), and 1663 minuses.
 #' The idea is to build a classifier
